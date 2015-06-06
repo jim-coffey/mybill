@@ -1,4 +1,4 @@
-# Sky Bill
+# My Bill
 
 Angular.js application presenting a Sky Bill from json data.
 

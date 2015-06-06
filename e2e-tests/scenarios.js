@@ -115,7 +115,7 @@ describe('Bill view', function() {
 
     });
     // END of Protractor way to do it
-ss
+
   });
 
 
