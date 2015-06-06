@@ -1,0 +1,115 @@
+<div id="in-error" class="alert alert-danger" role="alert" ng-if="inError">
+  <strong>Warning!</strong> There has been an error calculating your bill totals. Please Contact Customer Services.
+</div>
+
+<!-- Statment Dates & Summary  -->
+<div class="row">
+	<h2 class="daterange">Statement for Period : {{bill.statement.period.from | date:'MMM d, y'}} to {{bill.statement.period.to | date:'MMM d, y'}}</h2>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h5>Bill Created on : {{bill.statement.generated | date:'MMM d, y'}}</h5>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>Payment Due by : {{bill.statement.due | date:'MMM d, y'}}</h3>
+	</div>
+
+	<div class="col-md-6">
+		<h3 class="pull-right">Total Amount Due : {{bill.total | currency:'&pound;'}}</h3>
+	</div>
+</div>
+
+<div class="row">
+	<hr />
+</div>
+
+
+
+<!-- Statement Packages -->
+<h2>Your Sky Packages</h2>
+<div class="row headings">
+		<div class="col-md-offset-1 col-md-3">Subscription Type</div>
+		<div class="col-md-4">Description</div>
+		<div class="col-md-4 text-right">Cost</div>
+</div>
+<div class="row">
+	<div ng-repeat="subscription in bill.package.subscriptions">
+		<div class="col-md-offset-1 col-md-3">{{subscription.type | uppercase}}</div>
+		<div class="col-md-4">{{subscription.name}}</div>
+		<div class="col-md-4 text-right">{{subscription.cost | currency:'&pound;'}}</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="pull-right sub-total">Packages Total : {{bill.package.total | currency:'&pound;'}}</h3>
+	</div>
+</div>
+
+<div class="row">
+	<hr />
+</div>
+
+
+
+<!-- Statement Calls -->
+<h2>Your Phone Calls</h2>
+<div class="row headings">
+		<div class="col-md-offset-1 col-md-3">Called Number</div>
+		<div class="col-md-4">Duration</div>
+		<div class="col-md-4 text-right">Cost</div>
+</div>
+<div class="row">
+	<div ng-repeat="call in bill.callCharges.calls">
+		<div class="col-md-offset-1 col-md-3">{{call.called}}</div>
+		<div class="col-md-4">{{call.duration}}</div>
+		<div class="col-md-4 text-right">{{call.cost | currency:'&pound;'}}</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="pull-right sub-total">Calls Total : {{bill.callCharges.total | currency:'&pound;'}}</h3>
+	</div>
+</div>
+
+<div class="row">
+	<hr />
+</div>
+
+
+
+<!-- Statement Store -->
+<h2>Sky Box Office Spending</h2>
+
+<h3>Rentals</h3>
+<div class="row headings">
+		<div class="col-md-offset-1 col-md-7">Title</div>
+		<div class="col-md-4 text-right">Cost</div>
+</div>
+<div class="row">
+	<div ng-repeat="rental in bill.skyStore.rentals">
+		<div class="col-md-offset-1 col-md-7">{{rental.title}}</div>
+		<div class="col-md-4 text-right">{{rental.cost | currency:'&pound;'}}</div>
+	</div>
+</div>
+
+<h3>Buy and Keep</h3>
+<div class="row headings">
+		<div class="col-md-offset-1 col-md-7">Title</div>
+		<div class="col-md-4 text-right">Cost</div>
+</div>
+<div class="row">
+	<div ng-repeat="purchase in bill.skyStore.buyAndKeep">
+		<div class="col-md-offset-1 col-md-7">{{purchase.title}}</div>
+		<div class="col-md-4 text-right">{{purchase.cost | currency:'&pound;'}}</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="pull-right sub-total">Sky Store Total : {{bill.skyStore.total | currency:'&pound;'}}</h3>
+	</div>
+</div>
